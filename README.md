@@ -19,4 +19,16 @@
 #STEP 4 Give Access to run this folder by next command : 
 1) cd to your folder where the scrips exists
 2) chmod +x myscript.sh
-3) ./myscript.sh
+
+#STEP 5 Run our script
+1)./myscript.sh
+![image](https://github.com/davidght1/Linux/assets/109731662/30ffbc63-1507-4bb9-aac2-797498638cc8)
+
+2) check vaild fibunachi number (3)
+![image](https://github.com/davidght1/Linux/assets/109731662/15d1bfa8-c80d-4796-bd92-85a909428f29)
+
+3) check invaild fibunachi number (4)
+![image](https://github.com/davidght1/Linux/assets/109731662/e3f53066-e1aa-46cb-83d7-901b27caebe4)
+
+
+
