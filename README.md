@@ -13,7 +13,7 @@
 
 ![image](https://github.com/davidght1/Linux/assets/109731662/d1130092-f268-43c3-9f23-46c51d5b9204)
 
-#STEP 3 Copy the code we write on our script.txt file on the repository.
+# STEP 3 Copy the code we write on our script.txt file on the repository.
 
 ![image](https://github.com/davidght1/Linux/assets/109731662/399f0fdb-16dc-4947-8313-9b775e0b0232)
 
@@ -21,7 +21,7 @@
 1) cd to your folder where the scrips exists
 2) chmod +x myscript.sh
 
-#STEP 5 Run our script
+# STEP 5 Run our script
 
 1)./myscript.sh
 ![image](https://github.com/davidght1/Linux/assets/109731662/30ffbc63-1507-4bb9-aac2-797498638cc8)
