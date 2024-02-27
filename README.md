@@ -17,7 +17,7 @@
 
 ![image](https://github.com/davidght1/Linux/assets/109731662/399f0fdb-16dc-4947-8313-9b775e0b0232)
 
-#STEP 4 Give Access to run this folder by next command : 
+# STEP 4 Give Access to run this folder by next command : 
 1) cd to your folder where the scrips exists
 2) chmod +x myscript.sh
 
