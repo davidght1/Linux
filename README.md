@@ -9,6 +9,7 @@
 
 # STEP 2. Open Terminal and create file example script.sh for our script
 
+1)nano your_script.sh
 
 ![image](https://github.com/davidght1/Linux/assets/109731662/d1130092-f268-43c3-9f23-46c51d5b9204)
 
