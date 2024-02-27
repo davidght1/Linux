@@ -22,6 +22,7 @@
 2) chmod +x myscript.sh
 
 #STEP 5 Run our script
+
 1)./myscript.sh
 ![image](https://github.com/davidght1/Linux/assets/109731662/30ffbc63-1507-4bb9-aac2-797498638cc8)
 
