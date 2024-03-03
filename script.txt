@@ -3,15 +3,26 @@
 # Function to check if a number is a perfect square
 is_perfect_square() {
     n=$1
-    sqrt=$(echo "sqrt($n)" | bc)
-    squared=$((sqrt * sqrt))
+    sqrt=0
 
-    [ $squared -eq $n ]
+    while [ $((sqrt * sqrt)) -le $n ]; do
+        if [ $((sqrt * sqrt)) -eq $n ]; then
+            return 0  # Return success if the number is a perfect square
+        fi
+        ((sqrt++))
+    done
+
+    return 1  # Return failure if the number is not a perfect square
 }
 
 # Function to check if a number is a Fibonacci number and find its index
 is_fibonacci() {
     num=$1
+
+    if [ $num -eq 0 ]; then
+        echo "0 is not a Fibonacci number."
+        return
+    fi
 
     # Calculate two possible values that indicate Fibonacci numbers
     option1=$((5 * num * num + 4))
@@ -22,9 +33,9 @@ is_fibonacci() {
         echo "$num is a Fibonacci number."
 
         # Find the index of the Fibonacci number
-        a=0
-        b=1
-        index=0
+        a=1  # Start with the first Fibonacci number
+        b=1  # Second Fibonacci number
+        index=1  # Start with index 1 for the first Fibonacci number
 
         # Iterate through Fibonacci numbers until a match is found
         while [ $a -ne $num ]; do
@@ -34,7 +45,7 @@ is_fibonacci() {
             index=$((index + 1))
         done
 
-        echo "$num is at index $index in the Fibonacci."
+        echo "$num is at index $index in the Fibonacci sequence."
     else
         echo "$num is not a Fibonacci number."
     fi
