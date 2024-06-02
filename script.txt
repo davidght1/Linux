@@ -23,9 +23,9 @@ is_fibonacci() {
         return 1
     fi
 
-    # Calculate two possible values that indicate Fibonacci numbers using bc
-    option1=$(echo "5 * $num * $num + 4" | bc)
-    option2=$(echo "5 * $num * $num - 4" | bc)
+    # Calculate two possible values that indicate Fibonacci numbers
+    option1=$((5 * num * num + 4))
+    option2=$((5 * num * num - 4))
 
     # Check if either of the calculated values is a perfect square
     if is_perfect_square "$option1" || is_perfect_square "$option2"; then
@@ -43,7 +43,7 @@ find_fibonacci_index() {
 
     a=0  # Start with the first Fibonacci number (0)
     b=1  # Second Fibonacci number (1)
-    index=1  # Start with index 1 for the first Fibonacci number (1)
+    index=1  # Start with index 1 for the second Fibonacci number (1)
 
     # Iterate through Fibonacci numbers until a match is found
     while [ "$a" -lt "$num" ]; do
