@@ -54,8 +54,14 @@ is_fibonacci() {
     fi
 }
 
-# Get number from Jenkins parameter or set a default value for testing
-user_input=${USER_INPUT:-999}
+# Ensure the USER_INPUT environment variable is set
+if [ -z "$USER_INPUT" ]; then
+    echo "Error: USER_INPUT environment variable is not set."
+    exit 1
+fi
+
+# Get number from Jenkins parameter
+user_input=$USER_INPUT
 
 # Check if the input is a positive integer
 if [[ $user_input =~ ^[0-9]+$ ]]; then
@@ -63,4 +69,5 @@ if [[ $user_input =~ ^[0-9]+$ ]]; then
     is_fibonacci "$user_input"
 else
     echo "Invalid input. Please enter a positive integer."
+    exit 1
 fi
