@@ -4,9 +4,10 @@
 is_perfect_square() {
     n=$1
     sqrt=$(echo "sqrt($n)" | bc)
+    sqrt=${sqrt%.*}  # Convert sqrt to an integer by removing the decimal part
 
     # Check if the square of the calculated square root is equal to the original number
-    if [ "$(echo "$sqrt^2 == $n" | bc)" -eq 1 ]; then
+    if [ "$((sqrt * sqrt))" -eq "$n" ]; then
         return 0  # Return success if the number is a perfect square
     else
         return 1  # Return failure if the number is not a perfect square
@@ -17,7 +18,7 @@ is_perfect_square() {
 is_fibonacci() {
     num=$1
 
-    if [ $num -eq 0 ]; then
+    if [ "$num" -eq 0 ]; then
         echo "0 is not a Fibonacci number."
         return
     fi
@@ -27,35 +28,39 @@ is_fibonacci() {
     option2=$(echo "5 * $num * $num - 4" | bc)
 
     # Check if either of the calculated values is a perfect square
-    if (is_perfect_square $option1) || (is_perfect_square $option2); then
+    if is_perfect_square "$option1" || is_perfect_square "$option2"; then
         echo "$num is a Fibonacci number."
 
         # Find the index of the Fibonacci number
-        a=1  # Start with the first Fibonacci number
-        b=1  # Second Fibonacci number
-        index=1  # Start with index 1 for the first Fibonacci number
+        a=0  # Start with the first Fibonacci number (0)
+        b=1  # Second Fibonacci number (1)
+        index=1  # Start with index 1 for the first Fibonacci number (1)
 
         # Iterate through Fibonacci numbers until a match is found
-        while [ $a -ne $num ]; do
+        while [ "$a" -lt "$num" ]; do
             temp=$a
             a=$b
             b=$((temp + b))
             index=$((index + 1))
         done
 
-        echo "$num is at index $index in the Fibonacci sequence."
+        if [ "$a" -eq "$num" ]; then
+            echo "$num is at index $index in the Fibonacci sequence."
+        else
+            echo "$num is not a Fibonacci number."
+        fi
     else
         echo "$num is not a Fibonacci number."
     fi
 }
 
-# Prompt the user to enter a number
- user_input = $999
+# Get number from Jenkins parameter or set a default value for testing
+user_input=${USER_INPUT:-999}
 
 # Check if the input is a positive integer
 if [[ $user_input =~ ^[0-9]+$ ]]; then
     # Call the is_fibonacci function with the user input
-    is_fibonacci $user_input
+    is_fibonacci "$user_input"
 else
     echo "Invalid input. Please enter a positive integer."
 fi
