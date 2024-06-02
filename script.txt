@@ -50,7 +50,7 @@ is_fibonacci() {
 }
 
 # Prompt the user to enter a number
-read -p "Enter a number: " user_input
+user_input = $newNumber
 
 # Check if the input is a positive integer
 if [[ $user_input =~ ^[0-9]+$ ]]; then
