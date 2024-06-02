@@ -50,7 +50,7 @@ is_fibonacci() {
 }
 
 # Prompt the user to enter a number
-user_input = $USER_INPUT
+user_input = 3
 
 # Check if the input is a positive integer
 if [[ $user_input =~ ^[0-9]+$ ]]; then
