@@ -54,11 +54,7 @@ is_fibonacci() {
     fi
 }
 
-# Ensure the USER_INPUT environment variable is set
-if [ -z "$USER_INPUT" ]; then
-    echo "Error: USER_INPUT environment variable is not set."
-    exit 1
-fi
+
 
 # Get number from Jenkins parameter
 user_input=$USER_INPUT
