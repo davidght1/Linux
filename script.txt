@@ -45,7 +45,7 @@ is_fibonacci() {
 
         echo "$num is at index $index in the Fibonacci sequence."
     else
-        echo "$num is not a Fibonacci number bla bla bla."
+        echo "$num is not a Fibonacci number."
     fi
 }
 
