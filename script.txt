@@ -14,13 +14,13 @@ is_perfect_square() {
     fi
 }
 
-# Function to check if a number is a Fibonacci number and find its index
+# Function to check if a number is a Fibonacci number
 is_fibonacci() {
     num=$1
 
     if [ "$num" -eq 0 ]; then
         echo "0 is not a Fibonacci number."
-        return
+        return 1
     fi
 
     # Calculate two possible values that indicate Fibonacci numbers using bc
@@ -30,27 +30,33 @@ is_fibonacci() {
     # Check if either of the calculated values is a perfect square
     if is_perfect_square "$option1" || is_perfect_square "$option2"; then
         echo "$num is a Fibonacci number."
-
-        # Find the index of the Fibonacci number
-        a=0  # Start with the first Fibonacci number (0)
-        b=1  # Second Fibonacci number (1)
-        index=1  # Start with index 1 for the first Fibonacci number (1)
-
-        # Iterate through Fibonacci numbers until a match is found
-        while [ "$a" -lt "$num" ]; do
-            temp=$a
-            a=$b
-            b=$((temp + b))
-            index=$((index + 1))
-        done
-
-        if [ "$a" -eq "$num" ]; then
-            echo "$num is at index $index in the Fibonacci sequence."
-        else
-            echo "$num is not a Fibonacci number."
-        fi
+        return 0
     else
         echo "$num is not a Fibonacci number."
+        return 1
+    fi
+}
+
+# Function to find the index of a Fibonacci number
+find_fibonacci_index() {
+    num=$1
+
+    a=0  # Start with the first Fibonacci number (0)
+    b=1  # Second Fibonacci number (1)
+    index=1  # Start with index 1 for the first Fibonacci number (1)
+
+    # Iterate through Fibonacci numbers until a match is found
+    while [ "$a" -lt "$num" ]; do
+        temp=$a
+        a=$b
+        b=$((temp + b))
+        index=$((index + 1))
+    done
+
+    if [ "$a" -eq "$num" ]; then
+        echo "$num is at index $index in the Fibonacci sequence."
+    else
+        echo "There was an error finding the index for $num."
     fi
 }
 
@@ -60,7 +66,9 @@ user_input=$1
 # Check if the input is a positive integer
 if [[ $user_input =~ ^[0-9]+$ ]]; then
     # Call the is_fibonacci function with the user input
-    is_fibonacci "$user_input"
+    if is_fibonacci "$user_input"; then
+        find_fibonacci_index "$user_input"
+    fi
 else
     echo "Invalid input. Please enter a positive integer."
     exit 1
