@@ -10,6 +10,19 @@ pipeline {
     }
 
     stages {
+        stage('Check for bc') {
+            steps {
+                script {
+                    try {
+                        def bcVersion = sh(script: 'bc --version', returnStdout: true).trim()
+                        echo "bc is installed: ${bcVersion}"
+                    } catch (Exception e) {
+                        error "bc is not installed on this Jenkins agent."
+                    }
+                }
+            }
+        }
+
         stage('Clone Repository') {
             steps {
                 git 'https://github.com/davidght1/Linux.git'  // Replace with your repository URL
