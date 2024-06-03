@@ -4,10 +4,7 @@
 is_perfect_square() {
     n=$1
     sqrt=$(echo "scale=0; sqrt($n)" | bc)
-    sqrt=${sqrt%.*}  # Convert sqrt to an integer by removing the decimal part
-
-    # Check if the square of the calculated square root is equal to the original number
-    if [ "$((sqrt * sqrt))" -eq "$n" ]; then
+    if [ $((sqrt * sqrt)) -eq $n ]; then
         return 0  # Return success if the number is a perfect square
     else
         return 1  # Return failure if the number is not a perfect square
